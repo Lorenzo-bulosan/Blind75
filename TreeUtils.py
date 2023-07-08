@@ -35,5 +35,17 @@ class TreeGen:
 
         return output
     
+    def balanced_tree_identity(self) -> Node:
+
+        head = Node(1)
+        head.left = Node(1)
+        head.right = Node(1)
+        head.left.left = Node(1)
+        head.left.right = Node(1)
+        head.right.left = Node(1)
+        head.right.right = Node(1)
+
+        return head
+    
 
  
