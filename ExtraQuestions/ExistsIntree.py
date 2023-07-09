@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(0, 'c:/Projects/blind75/')
 from Node import Node
 from TreeUtils import TreeGen
 import random
