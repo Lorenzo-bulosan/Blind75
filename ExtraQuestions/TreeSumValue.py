@@ -9,7 +9,7 @@ def tree_sum(head: Node) -> int:
 
     leftSum = tree_sum(head.left)
     rightSum = tree_sum(head.right)
-    return 1 + leftSum + rightSum
+    return head.val + leftSum + rightSum
 
 def test_tree_sum():
 
