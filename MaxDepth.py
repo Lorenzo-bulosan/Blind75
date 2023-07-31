@@ -1,6 +1,12 @@
 from Node import Node
 from collections import deque
 
+def max_depth_tree_recursive(node: Node) -> int:
+
+    if node is None: return 0
+
+    return 1 + max(max_depth_tree_recursive(node.left), max_depth_tree_recursive(node.right))
+
 def max_depth_tree(node: Node) -> int:
 
     max_depth = 0
@@ -40,5 +46,22 @@ def test_max_depth_tree():
 
     assert expected == actual
 
+def test_max_depth_tree_recursive():
+    
+    head = Node(1)
+    head.left = Node(1)
+    head.left.left = Node(1)
+    head.left.left.left = Node(1)
+    head.left.left.left.left = Node(1)
+
+    assert 5 == max_depth_tree_recursive(head)
+
+def test_max_depth_tree_recursive_no_tree():
+    
+    head = None
+
+    assert 0 == max_depth_tree_recursive(head)
 
 test_max_depth_tree()
+test_max_depth_tree_recursive()
+test_max_depth_tree_recursive_no_tree()
