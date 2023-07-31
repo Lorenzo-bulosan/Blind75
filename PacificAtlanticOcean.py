@@ -37,6 +37,8 @@ def pacific_atlantic_ocean(heights: list[list[int]]) -> list[list[int]]:
         
         currentLastRowHeight = heights[rLast][c]
         dfs(rLast, c, currentLastRowHeight, vstAtl)
+
+    print(vstPacific); print(vstAtl)
     
     # dfs in horizontal oceans starting left and rigth rows to dfs
     cFirst = 0
@@ -48,9 +50,10 @@ def pacific_atlantic_ocean(heights: list[list[int]]) -> list[list[int]]:
         
         currentRightColHeight = heights[r][cLast]
         dfs(r, cLast, currentRightColHeight, vstAtl)
+
+    print(vstPacific); print(vstAtl)
     
-    # find if which positions appear in both sets
-    
+    # find if which positions appear in both sets    
     positionsReachedFromBothOceans = []
     for r, c in vstPacific:
         if((r,c) in vstAtl): 
@@ -66,7 +69,13 @@ def test_pacific_atlantic_ocean_only_1_island():
 
 def test_pacific_atlantic_ocean():
 
-    heights = [[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]]
+    heights = [
+        [1,2,2,3,5],
+        [3,2,3,4,4],
+        [2,4,5,3,1],
+        [6,7,1,4,5],
+        [5,1,1,2,4]]
+
     expected = [[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]]
     actual = pacific_atlantic_ocean(heights)
 
@@ -77,7 +86,25 @@ def test_pacific_atlantic_ocean():
     
     assert True    
 
+def test_pacific_atlantic_ocean2():
+
+    heights = [
+        [0,0,2],
+        [0,2,0], 
+        [2,0,0]]
+        
+    expected = [[1, 1], [2, 0], [0, 2]]
+    actual = pacific_atlantic_ocean(heights)
+
+    # Order doesn't matter check that 'actual' has same pairs as 'expected'
+    for i in range(len(expected)):
+        if expected[i] not in actual:
+            assert False
+    
+    assert True   
+
 if __name__ == '__main__':
 
     test_pacific_atlantic_ocean_only_1_island()
     test_pacific_atlantic_ocean()
+    test_pacific_atlantic_ocean2()
